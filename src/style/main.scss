@@ -1,12 +1,5 @@
-.logo {
-	height: 6em;
-	padding: 1.5em;
-	will-change: filter;
-	transition: filter 300ms;
-}
-.logo:hover {
-	filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-	filter: drop-shadow(0 0 2em #42b883aa);
-}
+@import '_reset.scss';
+@import '_variables.scss';
+@import '_method.scss';
+@import '_common.scss';
+@import '_animation.scss';

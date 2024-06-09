@@ -12,7 +12,6 @@ export default defineConfig({
 				// 需要自動導入的插件，自訂導入的API
 				'vue',
 				'vue-router',
-				'pinia',
 			],
 		}),
 	],
