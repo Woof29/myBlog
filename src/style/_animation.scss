@@ -28,19 +28,40 @@
   }
 }
 
-.Slide-enter-active,
-.Slide-leave-active {
-  transition: transform 0.4s cubic-bezier(0.5, 0, 0.5, 1);
+/* 定義 Slide 動畫效果 */
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.5s ease;
+}
+.slide-enter,
+.slide-leave-to {
+  transform: translateY(-100%);
 }
 
-.Slide-enter-from,
-.Slide-leave-to {
-  transform: translateX(100%); // 使組件從右側開始
+.slide-left-enter {
+  opacity: 0;
+  transform: translate(100%);
+  position: absolute;
+}
+.slide-left-enter-active {
+  transition: 0.5s;
 }
 
-.Slide-enter-to,
-.Slide-leave-from {
-  transform: translateX(0); // 使組件滑動回到其原始位置
+.slide-left-leave-to {
+  opacity: 0;
+  transform: translate(-100%);
+  position: absolute;
+}
+
+.slide-left-enter-active,
+.slide-left-leave-active {
+  transition: 0.5s;
+}
+
+.slide-left-leave-to {
+  opacity: 0;
+  transform: translate(-100%);
+  position: absolute;
 }
 
 .fade-enter-active,
