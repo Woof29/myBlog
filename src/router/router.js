@@ -14,7 +14,7 @@ const routes = [
     component: () => import("@/pages/about.vue"),
     meta: {
       title: "About",
-      transition: null,
+      transition: "slide",
     },
   },
 ];
@@ -24,10 +24,10 @@ const router = createRouter({
   routes,
 });
 
-router.afterEach((to, from) => {
-  const toDepth = to.path.split("/").length;
-  const fromDepth = from.path.split("/").length;
-  to.meta.transition = toDepth < fromDepth ? "slide" : "slide";
-});
+// router.afterEach((to, from) => {
+//   const toDepth = to.path.split("/").length;
+//   const fromDepth = from.path.split("/").length;
+//   to.meta.transition = toDepth < fromDepth ? "slide" : "slide";
+// });
 
 export default router;

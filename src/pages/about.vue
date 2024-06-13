@@ -14,6 +14,6 @@
 <style lang="scss" scoped>
 @import "@/style/main.scss";
 .container {
-  background: #7179ec;
+  background: #000;
 }
 </style>

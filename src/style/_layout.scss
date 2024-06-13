@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&family=Noto+Sans:wght@400;700&display=swap');
+// @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&family=Noto+Sans:wght@400;700&display=swap");
 :root {
   background-color: #000;
   -webkit-tap-highlight-color: transparent;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: rgb(255, 255, 255);
 }
 
 body {
@@ -16,12 +16,11 @@ body {
   }
 }
 
-.video-js {
-  font-size: 12px;
-}
-
-@supports ((height: constant(safe-area-inset-top)) or (height: env(safe-area-inset-top))) and
-  (-webkit-overflow-scrolling: touch) {
+@supports (
+    (height: constant(safe-area-inset-top)) or
+      (height: env(safe-area-inset-top))
+  )
+  and (-webkit-overflow-scrolling: touch) {
   #app {
     /* 适配齐刘海 */
     padding-top: 20px;
