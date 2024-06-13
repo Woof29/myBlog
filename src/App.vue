@@ -1,6 +1,4 @@
-<script setup>
-import HelloWorld from "./components/HelloWorld.vue";
-</script>
+<script setup></script>
 
 <template>
   <router-view v-slot="{ Component, route }">
@@ -12,6 +10,4 @@ import HelloWorld from "./components/HelloWorld.vue";
   </router-view>
 </template>
 
-<style lang="scss" scoped>
-@import "@/style/main.scss";
-</style>
+<style lang="scss" scoped></style>
