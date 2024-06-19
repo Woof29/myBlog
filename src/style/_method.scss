@@ -4,18 +4,22 @@
   $data: to-upper-case($direction);
   @for $i from 1 through str-length($data) {
     $result: append($result, str-slice($data, $i, $i));
-    #{pos-chtext(nth($result, $i))}: #{if(length($val) ==1, $val, nth($val, $i))};
+    #{pos-chtext(nth($result, $i))}: #{if(
+        length($val) ==1,
+        $val,
+        nth($val, $i)
+      )};
   }
 }
 
 @function pos-chtext($data) {
-  @if $data== 'T' {
+  @if $data== "T" {
     @return top;
-  } @else if $data== 'R' {
+  } @else if $data== "R" {
     @return right;
-  } @else if $data== 'B' {
+  } @else if $data== "B" {
     @return bottom;
-  } @else if $data== 'L' {
+  } @else if $data== "L" {
     @return left;
   }
 }
@@ -23,7 +27,7 @@
 // 文字樣式
 @mixin fontStyle($size, $weight: null, $color: null) {
   $LH: ();
-  @if $size == 40 {
+  @if $size >= 40 {
     $LH: 48px;
   } @else if $size == 32 {
     $LH: 40px;
@@ -55,7 +59,14 @@
 }
 
 // 常用關閉按鈕樣式(排版需自訂，預設margin:auto,pos:absolute)
-@mixin closeBtnStyle($size, $color: null, $top: null, $right: null, $bottom: null, $left: null) {
+@mixin closeBtnStyle(
+  $size,
+  $color: null,
+  $top: null,
+  $right: null,
+  $bottom: null,
+  $left: null
+) {
   width: #{$size}px;
   height: #{$size}px;
   margin: auto;
@@ -77,7 +88,7 @@
 
   &::after,
   &::before {
-    content: '';
+    content: "";
     width: calc(100% - 10px);
     height: 2px;
     margin: auto;

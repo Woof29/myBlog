@@ -17,6 +17,22 @@ const routes = [
       transition: "slide",
     },
   },
+  {
+    path: "/blog",
+    component: () => import("@/pages/blog.vue"),
+    meta: {
+      title: "Blog",
+      transition: "slide",
+    },
+  },
+  {
+    path: "/portfolio",
+    component: () => import("@/pages/portfolio.vue"),
+    meta: {
+      title: "Portfolio",
+      transition: "slide",
+    },
+  },
 ];
 
 const router = createRouter({
