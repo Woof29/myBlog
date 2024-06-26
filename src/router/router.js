@@ -6,7 +6,6 @@ const routes = [
     component: () => import("@/pages/index.vue"),
     meta: {
       title: "Index",
-      transition: null,
     },
   },
   {
@@ -14,7 +13,6 @@ const routes = [
     component: () => import("@/pages/about.vue"),
     meta: {
       title: "About",
-      transition: "slide",
     },
   },
   {
@@ -22,7 +20,6 @@ const routes = [
     component: () => import("@/pages/blog.vue"),
     meta: {
       title: "Blog",
-      transition: "slide",
     },
   },
   {
@@ -30,7 +27,6 @@ const routes = [
     component: () => import("@/pages/portfolio.vue"),
     meta: {
       title: "Portfolio",
-      transition: "slide",
     },
   },
 ];
@@ -43,7 +39,7 @@ const router = createRouter({
 // router.afterEach((to, from) => {
 //   const toDepth = to.path.split("/").length;
 //   const fromDepth = from.path.split("/").length;
-//   to.meta.transition = toDepth < fromDepth ? "slide" : "slide";
+//   to.meta.transition = toDepth < fromDepth ? "slide" : "fade";
 // });
 
 export default router;

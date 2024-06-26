@@ -2,8 +2,12 @@
   // max-width: 1220px;
   min-height: 100vh;
   margin: 0 auto;
-  padding: 110px 12px calc(80px + constant(safe-area-inset-bottom));
-  padding: 110px 12px calc(80px + env(safe-area-inset-bottom));
+  padding: 110px 12px calc(80px + constant(safe-area-inset-bottom)) 88px;
+  padding: 110px 12px calc(80px + env(safe-area-inset-bottom)) 88px;
+  @include rwd($rwd-level-one) {
+    padding: 110px 12px calc(80px + constant(safe-area-inset-bottom));
+    padding: 110px 12px calc(80px + env(safe-area-inset-bottom));
+  }
 }
 
 .backTitle {
@@ -182,7 +186,7 @@
         position: absolute;
         top: 0;
         left: 0;
-        opacity: 0;
+        opacity: 1;
         animation: fadeIn 1s forwards;
       }
       @at-root .cardInfo {

@@ -2,7 +2,7 @@
 
 <template>
   <router-view v-slot="{ Component, route }">
-    <transition :name="route.meta.transition || 'default'" mode="out-in">
+    <transition :name="route.meta.transition">
       <keep-alive>
         <component :is="Component" :key="route.path" />
       </keep-alive>
