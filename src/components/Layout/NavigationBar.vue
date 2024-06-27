@@ -33,7 +33,7 @@
 @import "@/style/main.scss";
 nav {
   width: 76px;
-  height: 100vh;
+  min-height: 100vh;
   position: fixed;
   bottom: 0;
   box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.7);
