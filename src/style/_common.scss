@@ -2,11 +2,11 @@
   // max-width: 1220px;
   min-height: 100vh;
   margin: 0 auto;
-  padding: 110px 12px calc(80px + constant(safe-area-inset-bottom)) 88px;
-  padding: 110px 12px calc(80px + env(safe-area-inset-bottom)) 88px;
+  padding: 60px 24px calc(80px + constant(safe-area-inset-bottom)) 100px;
+  padding: 60px 24px calc(80px + env(safe-area-inset-bottom)) 100px;
   @include rwd($rwd-level-one) {
-    padding: 110px 12px calc(80px + constant(safe-area-inset-bottom));
-    padding: 110px 12px calc(80px + env(safe-area-inset-bottom));
+    padding: 60px 24px calc(80px + constant(safe-area-inset-bottom));
+    padding: 60px 24px calc(80px + env(safe-area-inset-bottom));
   }
 }
 

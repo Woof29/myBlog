@@ -5,6 +5,23 @@ import NavigationBar from "../components/Layout/NavigationBar.vue";
 <template>
   <main>
     <div class="container">
+      <div class="title">Portfolio</div>
+
+      <ul class="tabList">
+        <li>
+          <span>Web</span>
+        </li>
+        <li>
+          <span>Video</span>
+        </li>
+        <li>
+          <span>Photography</span>
+        </li>
+        <li>
+          <span>Graphic</span>
+        </li>
+      </ul>
+
       <div class="boxList">
         <div class="BLcard" v-for="(item, index) in 5" :key="index">
           <div class="cardPic">
