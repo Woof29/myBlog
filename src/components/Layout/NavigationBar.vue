@@ -1,7 +1,6 @@
 <script setup></script>
 
 <template>
-  <!-- <transition name="fade" appear> -->
   <nav>
     <ul>
       <li>
@@ -26,7 +25,6 @@
       </li>
     </ul>
   </nav>
-  <!-- </transition> -->
 </template>
 
 <style lang="scss" scoped>
@@ -34,9 +32,10 @@
 nav {
   width: 76px;
   min-height: 100vh;
+  background: #0f0f0f;
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.7);
   position: fixed;
   bottom: 0;
-  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.7);
   z-index: 99;
   @include rwd($rwd-level-one) {
     width: 100%;

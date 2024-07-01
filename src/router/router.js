@@ -29,12 +29,31 @@ const routes = [
       title: "Portfolio",
     },
   },
+  {
+    path: "/portfolio/:id",
+    component: {
+      modal: () => import("@/pages/portfolio.vue"),
+    },
+    meta: {
+      title: "portfolioDetail",
+    },
+    beforeEnter: [keepDefaultView],
+  },
 ];
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
 });
+
+function keepDefaultView(to, from) {
+  if (from.matched.length) {
+    console.log(from);
+    to.matched[0].components.default = from.matched[0].components.default;
+  } else {
+    to.matched[0].components.default = () => import("@/pages/portfolio.vue");
+  }
+}
 
 // router.afterEach((to, from) => {
 //   const toDepth = to.path.split("/").length;

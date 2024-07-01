@@ -43,10 +43,6 @@ const handleShake = () => {
 @import "@/style/main.scss";
 .container {
   padding: 36px;
-  background: #101010;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: space-between;
   position: relative;
   z-index: 2000;

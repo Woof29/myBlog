@@ -8,6 +8,12 @@
       </keep-alive>
     </transition>
   </router-view>
+
+  <router-view v-slot="{ Component }" name="modal">
+    <keep-alive>
+      <component :is="Component" />
+    </keep-alive>
+  </router-view>
 </template>
 
 <style lang="scss" scoped></style>
