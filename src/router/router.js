@@ -1,5 +1,15 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
+function keepDefaultView(to, from) {
+  if (from.matched.length) {
+    console.log("From:", from);
+    console.log("To:", to);
+    to.matched[0].components.default = from.matched[0].components.default;
+  } else {
+    to.matched[0].components.default = () => import("@/pages/portfolio.vue");
+  }
+}
+
 const routes = [
   {
     path: "/",
@@ -30,12 +40,14 @@ const routes = [
     },
   },
   {
-    path: "/portfolio/:id",
-    component: {
-      modal: () => import("@/pages/portfolio.vue"),
+    path: "/portfolio/portfolioDetail",
+    components: {
+      default: () => import("@/pages/portfolio.vue"),
+      modal: () => import("@/pages/portfolioDetail.vue"),
     },
     meta: {
       title: "portfolioDetail",
+      showModal: true,
     },
     beforeEnter: [keepDefaultView],
   },
@@ -45,20 +57,5 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes,
 });
-
-function keepDefaultView(to, from) {
-  if (from.matched.length) {
-    console.log(from);
-    to.matched[0].components.default = from.matched[0].components.default;
-  } else {
-    to.matched[0].components.default = () => import("@/pages/portfolio.vue");
-  }
-}
-
-// router.afterEach((to, from) => {
-//   const toDepth = to.path.split("/").length;
-//   const fromDepth = from.path.split("/").length;
-//   to.meta.transition = toDepth < fromDepth ? "slide" : "fade";
-// });
 
 export default router;

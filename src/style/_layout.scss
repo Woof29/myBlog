@@ -10,8 +10,8 @@
 body {
   min-height: 100vh;
   min-height: 100dvh;
-  &:has(.slide),
-  :has(.bodyishidden) {
+  &:has(.modal),
+  :has(.bodyIsHidden) {
     overflow: hidden;
   }
 }
