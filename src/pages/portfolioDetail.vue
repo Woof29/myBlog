@@ -2,10 +2,9 @@
 import YouTubePlayer from "../components/YouTubePlayer.vue";
 
 const playerWidth =
-  document.body.clientWidth > 768
-    ? document.body.clientWidth / 2
-    : document.body.clientWidth * 0.75;
-const playerHeight = playerWidth / 2;
+  document.body.clientWidth > 768 ? 800 : document.body.clientWidth * 0.75;
+const playerHeight =
+  document.body.clientWidth >= 768 ? playerWidth / 2 : playerWidth / 1.6;
 </script>
 
 <template>
@@ -31,10 +30,19 @@ const playerHeight = playerWidth / 2;
 </template>
 
 <style lang="scss" scoped>
+@import "@/style/main.scss";
 .wrap {
   max-width: 800px;
-  height: 500px;
   min-height: auto;
-  /* background: red; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  .title {
+    @include fontStyle(24, 700, #fff);
+  }
+  .description {
+    @include fontStyle(16, 400, #fff);
+  }
 }
 </style>

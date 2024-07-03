@@ -166,6 +166,6 @@
 @mixin glassmorphism($bw) {
   background: rgba($bw, $bw, $bw, 0.25);
   box-shadow: none;
-  backdrop-filter: blur(6.5px);
-  -webkit-backdrop-filter: blur(6.5px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }

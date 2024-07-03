@@ -183,33 +183,35 @@
   max-width: 1400px;
   padding: 24px 24px calc(80px + constant(safe-area-inset-bottom)) 100px;
   padding: 24px 24px calc(80px + env(safe-area-inset-bottom)) 100px;
-  @include rwd($rwd-level-one) {
-    padding: 24px 12px calc(80px + constant(safe-area-inset-bottom));
-    padding: 24px 12px calc(80px + env(safe-area-inset-bottom));
-  }
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   flex-shrink: 0;
-  column-gap: 8px;
-  row-gap: 16px;
+  column-gap: 32px;
+  row-gap: 32px;
+  @include rwd($rwd-level-one) {
+    padding: 24px 12px calc(80px + constant(safe-area-inset-bottom));
+    padding: 24px 12px calc(80px + env(safe-area-inset-bottom));
+    column-gap: 8px;
+    row-gap: 16px;
+  }
   @at-root .BLcard {
-    width: calc(100% / 3 - 5.4px);
-    padding: 12px;
-    @include glassmorphism(120);
-    border-radius: 10px;
+    width: calc(100% / 3 - 21.4px);
+    padding: 16px;
+    border-radius: 14px;
     border: 1px solid rgba(255, 255, 255, 0.15);
-    cursor: pointer;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
     transition: all 0.2s ease-in;
+    gap: 4px;
+    cursor: pointer;
+    @include glassmorphism(120);
     &:hover {
       box-shadow: 0 8px 32px 0 rgba(159, 160, 173, 0.219);
     }
-    border-radius: 16px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    gap: 4px;
     @include rwd($rwd-level-one) {
       width: calc(100% / 2 - 4px);
     }

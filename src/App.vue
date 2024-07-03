@@ -38,14 +38,18 @@ const goBack = () => {
   z-index: 100;
 }
 .modalContainer {
-  width: calc(100% - 56px);
+  width: calc(100% - 80px);
+  height: calc(100vh - 100px);
   padding: 24px;
   border-radius: 24px;
   background: #101010;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   position: relative;
-  /* @include glassmorphism(220); */
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 </style>
