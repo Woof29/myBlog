@@ -10,8 +10,13 @@ const playerHeight =
 <template>
   <div class="wrap">
     <div class="title">
-      <span>測試測試</span>
+      <span>
+        [ 家訪 ]「以自然為基底，將現代住宅融入異域風貌的居住空間 」— 藝術家 LUPA
+        的工作室住家
+      </span>
     </div>
+
+    <time class="timestamp">10/12/2024</time>
 
     <YouTubePlayer
       :width="playerWidth"
@@ -24,8 +29,6 @@ const playerHeight =
         業父多燈、行兩要因比者土？應受我他建影轉假界吃學他本打可星希開，一連雙住先歡子頭學始變：康文的。多書能求產包並嗎些最裡中？他黃品之車去錢般容口你的方地文子，投動分內有些請中德人方選時活之車是童的筆的；交術行人特細這候看火己細主子又做年子手象為人它特一岸小好三了考建他國商非條沒稱進任都十能問好中之響身動書相一友功，的們看學土，率衣知要得市實一愛給牛年世東官：機定度回作小活女器部認。
       </p>
     </div>
-
-    <div class="timestamp">2024-10-12</div>
   </div>
 </template>
 
@@ -34,15 +37,29 @@ const playerHeight =
 .wrap {
   max-width: 800px;
   min-height: auto;
+  margin: 24px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 32px;
   .title {
     @include fontStyle(24, 700, #fff);
+    position: relative;
+    &::after {
+      content: "";
+      width: 30px;
+      height: 2px;
+      background: #fff;
+      position: absolute;
+      @include pos(bl, -16px, 50%);
+      transform: translateX(-50%);
+    }
   }
   .description {
     @include fontStyle(16, 400, #fff);
+  }
+  .timestamp {
+    @include fontStyle(12, 40);
   }
 }
 </style>

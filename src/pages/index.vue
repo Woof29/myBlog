@@ -1,10 +1,28 @@
 <script setup>
+const router = useRouter();
 const shakeImg = ref(null);
-const handleShake = () => {
-  shakeImg.value.classList.add("apply-shake");
-  setTimeout(() => {
-    shakeImg.value.classList.remove("apply-shake");
-  }, 500);
+const clickCount = ref(0);
+// const handleShake = () => {};
+
+const goCreate = () => {
+  clickCount.value++;
+  if (clickCount.value === 1) {
+    setTimeout(() => {
+      clickCount.value = 0;
+    }, 1000);
+  }
+
+  if (clickCount.value === 3) {
+    router.push("/createPost");
+    clickCount.value = 0;
+  }
+
+  if (shakeImg.value) {
+    shakeImg.value.classList.add("apply-shake");
+    setTimeout(() => {
+      shakeImg.value.classList.remove("apply-shake");
+    }, 500);
+  }
 };
 </script>
 
@@ -26,7 +44,7 @@ const handleShake = () => {
       <img
         ref="shakeImg"
         src="@/assets/salmon_package.webp"
-        @click="handleShake()"
+        @click="goCreate($event)"
       />
     </div>
 
@@ -62,7 +80,7 @@ const handleShake = () => {
         &::after {
           content: "";
           width: 0;
-          height: 1px;
+          height: 2px;
           background: #fff;
           position: absolute;
           @include pos(bl, 6px, 12px);

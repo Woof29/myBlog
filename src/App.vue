@@ -3,6 +3,111 @@ const router = useRouter();
 const goBack = () => {
   router.go(-1);
 };
+
+const starryNight = ref(null);
+
+class StarrySky {
+  constructor(container) {
+    this.container = container;
+    this.stars = [];
+    this.shootingStars = [];
+    this.resizeHandler = this.adjustStarCount.bind(this);
+    this.shootingStarInterval = null;
+  }
+
+  createStar() {
+    const star = document.createElement("div");
+    star.classList.add("star");
+    star.style.width = `${Math.random() * 2 + 2}px`;
+    star.style.height = star.style.width;
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.top = `${Math.random() * 100}%`;
+    star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+    star.style.animationName = "twinkle";
+    star.style.animationIterationCount = "infinite";
+    this.container.appendChild(star);
+    this.stars.push(star);
+  }
+
+  createShootingStar() {
+    const shootingStar = document.createElement("div");
+    shootingStar.classList.add("shooting-star");
+    shootingStar.style.right = "0";
+    shootingStar.style.top = `${Math.random() * 50}%`;
+    shootingStar.style.animationDuration = "1s";
+    shootingStar.style.animationName = "shoot";
+    shootingStar.style.animationTimingFunction = "linear";
+    this.container.appendChild(shootingStar);
+    this.shootingStars.push(shootingStar);
+    setTimeout(() => {
+      shootingStar.remove();
+      this.shootingStars = this.shootingStars.filter((s) => s !== shootingStar);
+    }, 1000);
+  }
+
+  initStars(count) {
+    for (let i = 0; i < count; i++) {
+      this.createStar();
+    }
+  }
+
+  adjustStarCount() {
+    const starCount = Math.floor(
+      (window.innerWidth * window.innerHeight) / 8000
+    );
+
+    if (this.stars.length > starCount) {
+      for (let i = starCount; i < this.stars.length; i++) {
+        this.stars[i].remove();
+      }
+      this.stars = this.stars.slice(0, starCount);
+    } else if (this.stars.length < starCount) {
+      for (let i = this.stars.length; i < starCount; i++) {
+        this.createStar();
+      }
+    }
+  }
+
+  startShootingStars() {
+    this.shootingStarInterval = setInterval(
+      () => this.createShootingStar(),
+      10000
+    );
+  }
+
+  stopShootingStars() {
+    clearInterval(this.shootingStarInterval);
+  }
+
+  start() {
+    this.initStars(120);
+    window.addEventListener("resize", this.resizeHandler);
+    this.adjustStarCount();
+    this.startShootingStars();
+  }
+
+  stop() {
+    window.removeEventListener("resize", this.resizeHandler);
+    this.stopShootingStars();
+    this.stars.forEach((star) => star.remove());
+    this.shootingStars.forEach((star) => star.remove());
+    this.stars = [];
+    this.shootingStars = [];
+  }
+}
+
+let starrySky = null;
+
+onMounted(() => {
+  starrySky = new StarrySky(starryNight.value);
+  starrySky.start();
+});
+
+onUnmounted(() => {
+  if (starrySky) {
+    starrySky.stop();
+  }
+});
 </script>
 
 <template>
@@ -15,41 +120,17 @@ const goBack = () => {
   <router-view v-slot="{ Component }" name="modal">
     <div v-if="Component" class="modalBG" @click.prevent="goBack">
       <div class="modalContainer" @click.stop>
+        <div class="closeBtn" @click.prevent="goBack"></div>
         <keep-alive>
           <component :is="Component" />
         </keep-alive>
       </div>
     </div>
   </router-view>
+
+  <div ref="starryNight" class="starry-night"></div>
 </template>
 
 <style lang="scss" scoped>
 @import "@/style/main.scss";
-.modalBG {
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 100;
-}
-.modalContainer {
-  width: calc(100% - 80px);
-  height: calc(100vh - 100px);
-  padding: 24px;
-  border-radius: 24px;
-  background: #101010;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  position: relative;
-  overflow: auto;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
 </style>

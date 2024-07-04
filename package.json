@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vueup/vue-quill": "^1.2.0",
     "core-js": "^3.37.1",
     "firebase": "^10.12.2",
     "quill": "^2.0.2",

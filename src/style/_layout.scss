@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&family=Noto+Sans:wght@400;700&display=swap");
 :root {
-  background-color: #101010;
+  background-color: transparent;
   -webkit-tap-highlight-color: transparent;
   font-family: "Noto Sans", sans-serif;
   color-scheme: light dark;
-  color: #efefef;
+  color: #d4d4d4;
 }
 
 body {
@@ -13,6 +13,35 @@ body {
   &:has(.modalContainer),
   :has(.bodyIsHidden) {
     overflow: hidden;
+    padding-right: 6px;
+  }
+}
+.starry-night {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #101010 20%, #1b1c27, #101010);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  .star {
+    background-color: #ffffff;
+    border-radius: 50%;
+    position: absolute;
+  }
+
+  .shooting-star {
+    position: absolute;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(
+      270deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgb(146, 248, 255) 100%
+    );
+    opacity: 0;
+    transform-origin: right center;
   }
 }
 
