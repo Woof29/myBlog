@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, serverTimestamp, updateDoc } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCEjQEk1YGk5hxZ0URwdMf9FGI-8Txc5YM",
@@ -12,6 +13,7 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
+const storage = getStorage(app, "gs://my-custom-bucket");
 
 const docRef = doc(db, "objects", "some-id");
 export const updateTimestamp = await updateDoc(docRef, {

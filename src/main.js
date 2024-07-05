@@ -3,10 +3,12 @@ import "@/style/main.scss";
 import App from "./App.vue";
 import router from "./router/router";
 import Vue2Editor from "vue2-editor";
-import { QuillEditor } from "@vueup/vue-quill";
+import { QuillEditor, Quill } from "@vueup/vue-quill";
+import ImageResize from "quill-image-resize-module";
+Quill.register("modules/imageResize", ImageResize);
 
 const app = createApp(App);
-app.use(Vue2Editor);
+
 app.component("QuillEditor", QuillEditor);
 app.use(router);
 app.mount("#app");
