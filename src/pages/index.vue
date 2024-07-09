@@ -1,22 +1,7 @@
 <script setup>
-const router = useRouter();
 const shakeImg = ref(null);
-const clickCount = ref(0);
-// const handleShake = () => {};
-
-const goCreate = () => {
-  clickCount.value++;
-  if (clickCount.value === 1) {
-    setTimeout(() => {
-      clickCount.value = 0;
-    }, 1000);
-  }
-
-  if (clickCount.value === 3) {
-    router.push("/createPost");
-    clickCount.value = 0;
-  }
-
+// const clickCount = ref(0);
+const handleShake = () => {
   if (shakeImg.value) {
     shakeImg.value.classList.add("apply-shake");
     setTimeout(() => {
@@ -24,6 +9,20 @@ const goCreate = () => {
     }, 500);
   }
 };
+
+// const goCreate = () => {
+//   clickCount.value++;
+//   if (clickCount.value === 1) {
+//     setTimeout(() => {
+//       clickCount.value = 0;
+//     }, 1000);
+//   }
+
+//   if (clickCount.value === 3) {
+//     router.push("/createPost");
+//     clickCount.value = 0;
+//   }
+// };
 </script>
 
 <template>
@@ -44,7 +43,7 @@ const goCreate = () => {
       <img
         ref="shakeImg"
         src="@/assets/salmon_package.webp"
-        @click="goCreate($event)"
+        @click="handleShake()"
       />
     </div>
 

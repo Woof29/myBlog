@@ -1,4 +1,5 @@
 import { defineConfig, loadEnv } from "vite";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
 import vue from "@vitejs/plugin-vue";
 import { fileURLToPath } from "url";
 import path from "path";
@@ -16,6 +17,10 @@ export default defineConfig(({ mode }) => {
           "vue",
           "vue-router",
         ],
+      }),
+      inject({
+        "window.Quill": ["@vueup/vue-quill", "Quill"],
+        Quill: ["@vueup/vue-quill", "Quill"],
       }),
     ],
     resolve: {
@@ -35,6 +40,18 @@ export default defineConfig(({ mode }) => {
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ""),
         },
+      },
+    },
+    build: {
+      rollupOptions: {
+        plugins: [
+          nodeResolve({
+            mainFields: ["modules", "main", "jsnext:main"],
+            browser: true,
+            extensions: [".js", ".json"],
+            preferBuiltins: false,
+          }),
+        ],
       },
     },
   };

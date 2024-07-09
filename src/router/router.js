@@ -51,13 +51,6 @@ const routes = [
     },
     beforeEnter: [keepDefaultView],
   },
-  {
-    path: "/createPost",
-    component: () => import("@/pages/createPost.vue"),
-    meta: {
-      title: "createPost",
-    },
-  },
 ];
 
 const router = createRouter({
