@@ -18,10 +18,6 @@ export default defineConfig(({ mode }) => {
           "vue-router",
         ],
       }),
-      inject({
-        "window.Quill": ["@vueup/vue-quill", "Quill"],
-        Quill: ["@vueup/vue-quill", "Quill"],
-      }),
     ],
     resolve: {
       alias: {
