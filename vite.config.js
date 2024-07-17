@@ -30,13 +30,6 @@ export default defineConfig(({ mode }) => {
       port: Number(env.VITE_SERVER_PORT),
       strictPort: true,
       cors: true,
-      proxy: {
-        "/api": {
-          target: env.VITE_SERVER_TARGET,
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, ""),
-        },
-      },
     },
     build: {
       rollupOptions: {

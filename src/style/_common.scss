@@ -192,6 +192,7 @@
 }
 
 .boxList {
+  width: 100%;
   max-width: 1400px;
   padding: 24px 24px calc(80px + constant(safe-area-inset-bottom)) 100px;
   padding: 24px 24px calc(80px + env(safe-area-inset-bottom)) 100px;
@@ -258,7 +259,7 @@
     @at-root .cardContent {
       p {
         @include txtChip(3);
-        @include fontStyle(14, 400, #fff);
+        @include fontStyle(14, 400, #c0c0c0);
         @include rwd($rwd-level-one) {
           @include txtChip(2);
         }

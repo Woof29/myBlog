@@ -1,6 +1,35 @@
 <script setup>
 import { RouterLink } from "vue-router";
 import NavigationBar from "../components/Layout/NavigationBar.vue";
+import { ref, onMounted } from "vue";
+import { db } from "../../firebase/firebaseInit";
+import { collection, query, where, getDocs } from "firebase/firestore";
+
+const topic = ref("web");
+
+const portfolioList = ref([]);
+const getList = async (topic) => {
+  try {
+    const q = query(collection(db, "portfolio"), where("topic", "==", topic));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      portfolioList.value = [...portfolioList.value, doc.data()];
+      console.log(portfolioList.value);
+    });
+  } catch (error) {
+    console.error("Response error:", error);
+  }
+};
+
+const switchTopic = (v) => {
+  portfolioList.value = [];
+  topic.value = v;
+  getList(topic.value);
+};
+
+onMounted(() => {
+  getList(topic.value);
+});
 </script>
 
 <template>
@@ -12,16 +41,25 @@ import NavigationBar from "../components/Layout/NavigationBar.vue";
         </div>
 
         <ul class="tabList">
-          <li class="active">
+          <li :class="{ active: topic === 'web' }" @click="switchTopic('web')">
             <span>Web</span>
           </li>
-          <li>
+          <li
+            :class="{ active: topic === 'video' }"
+            @click="switchTopic('video')"
+          >
             <span>Video</span>
           </li>
-          <li>
+          <li
+            :class="{ active: topic === 'photo' }"
+            @click="switchTopic('photo')"
+          >
             <span>Photography</span>
           </li>
-          <li>
+          <li
+            :class="{ active: topic === 'graphic' }"
+            @click="switchTopic('graphic')"
+          >
             <span>Graphic</span>
           </li>
         </ul>
@@ -30,19 +68,17 @@ import NavigationBar from "../components/Layout/NavigationBar.vue";
         <RouterLink
           to="/portfolio/portfolioDetail"
           class="BLcard"
-          v-for="(item, index) in 9"
+          v-for="(item, index) in portfolioList"
           :key="index"
         >
           <div class="cardPic">
-            <img src="https://fakeimg.pl/300x200/660" />
+            <img :src="item.coverUrl" />
           </div>
           <div class="cardTitle">
-            <span class="title">測試測試</span>
+            <span class="title">{{ item.title }}</span>
           </div>
           <div class="cardContent">
-            <p>
-              業父多燈、行兩要因比者土？應受我他建影轉假界吃學他本打可星希開，一連雙住先歡子頭學始變：康文的。多書能求產包並嗎些最裡中？他黃品之車去錢般容口你的方地文子，投動分內有些請中德人方選時活之車是童的筆的；交術行人特細這候看火己細主子又做年子手象為人它特一岸小好三了考建他國商非條沒稱進任都十能問好中之響身動書相一友功，的們看學土，率衣知要得市實一愛給牛年世東官：機定度回作小活女器部認。
-            </p>
+            <p>{{ item.preview }}</p>
           </div>
         </RouterLink>
       </div>
