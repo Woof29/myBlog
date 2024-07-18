@@ -16,27 +16,27 @@ class StarrySky {
   }
 
   createStar() {
-    const star = document.createElement("div");
-    star.classList.add("star");
+    const star = document.createElement('div');
+    star.classList.add('star');
     star.style.width = `${Math.random() * 2 + 2}px`;
     star.style.height = star.style.width;
     star.style.left = `${Math.random() * 100}%`;
     star.style.top = `${Math.random() * 100}%`;
     star.style.animationDuration = `${Math.random() * 3 + 2}s`;
-    star.style.animationName = "twinkle";
-    star.style.animationIterationCount = "infinite";
+    star.style.animationName = 'twinkle';
+    star.style.animationIterationCount = 'infinite';
     this.container.appendChild(star);
     this.stars.push(star);
   }
 
   createShootingStar() {
-    const shootingStar = document.createElement("div");
-    shootingStar.classList.add("shooting-star");
-    shootingStar.style.right = "0";
+    const shootingStar = document.createElement('div');
+    shootingStar.classList.add('shooting-star');
+    shootingStar.style.right = '0';
     shootingStar.style.top = `${Math.random() * 50}%`;
-    shootingStar.style.animationDuration = "1s";
-    shootingStar.style.animationName = "shoot";
-    shootingStar.style.animationTimingFunction = "linear";
+    shootingStar.style.animationDuration = '1s';
+    shootingStar.style.animationName = 'shoot';
+    shootingStar.style.animationTimingFunction = 'linear';
     this.container.appendChild(shootingStar);
     this.shootingStars.push(shootingStar);
     setTimeout(() => {
@@ -81,13 +81,13 @@ class StarrySky {
 
   start() {
     this.initStars(120);
-    window.addEventListener("resize", this.resizeHandler);
+    window.addEventListener('resize', this.resizeHandler);
     this.adjustStarCount();
     this.startShootingStars();
   }
 
   stop() {
-    window.removeEventListener("resize", this.resizeHandler);
+    window.removeEventListener('resize', this.resizeHandler);
     this.stopShootingStars();
     this.stars.forEach((star) => star.remove());
     this.shootingStars.forEach((star) => star.remove());
@@ -132,5 +132,5 @@ onUnmounted(() => {
 </template>
 
 <style lang="scss" scoped>
-@import "@/style/main.scss";
+@import '@/style/main.scss';
 </style>

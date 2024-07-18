@@ -3,9 +3,9 @@ const shakeImg = ref(null);
 // const clickCount = ref(0);
 const handleShake = () => {
   if (shakeImg.value) {
-    shakeImg.value.classList.add("apply-shake");
+    shakeImg.value.classList.add('apply-shake');
     setTimeout(() => {
-      shakeImg.value.classList.remove("apply-shake");
+      shakeImg.value.classList.remove('apply-shake');
     }, 500);
   }
 };
@@ -57,7 +57,7 @@ const handleShake = () => {
 </template>
 
 <style lang="scss" scoped>
-@import "@/style/main.scss";
+@import '@/style/main.scss';
 .container {
   padding: 36px;
   justify-content: space-between;
@@ -73,11 +73,12 @@ const handleShake = () => {
       gap: 12px;
     }
     .item {
+      color: #d4d4d4;
       a {
         padding: 8px 12px;
         position: relative;
         &::after {
-          content: "";
+          content: '';
           width: 0;
           height: 2px;
           background: #fff;
@@ -104,7 +105,7 @@ const handleShake = () => {
     img {
       width: 500px;
       height: 500px;
-      @include rwd($rwd-level-one) {
+      @include rwd($rwd-level-two) {
         width: 300px;
         height: 300px;
       }
@@ -123,7 +124,7 @@ const handleShake = () => {
       p {
         white-space: nowrap;
         @include fontStyle(40, 700);
-        @include rwd($rwd-level-one) {
+        @include rwd($rwd-level-two) {
           @include fontStyle(24, 700);
         }
       }

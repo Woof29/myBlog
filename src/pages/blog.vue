@@ -1,5 +1,5 @@
 <script setup>
-import NavigationBar from "../components/Layout/NavigationBar.vue";
+import NavigationBar from '../components/Layout/NavigationBar.vue';
 </script>
 
 <template>
@@ -46,5 +46,5 @@ import NavigationBar from "../components/Layout/NavigationBar.vue";
 </template>
 
 <style lang="scss" scoped>
-@import "@/style/main.scss";
+@import '@/style/main.scss';
 </style>

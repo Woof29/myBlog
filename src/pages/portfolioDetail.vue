@@ -1,39 +1,59 @@
 <script setup>
-import YouTubePlayer from "../components/YouTubePlayer.vue";
+import YouTubePlayer from '../components/YouTubePlayer.vue';
+import { db } from '../../firebase/firebaseInit';
+import { doc, getDoc } from 'firebase/firestore';
 
 const playerWidth =
   document.body.clientWidth > 768 ? 800 : document.body.clientWidth * 0.75;
 const playerHeight =
   document.body.clientWidth >= 768 ? playerWidth / 2 : playerWidth / 1.6;
+const route = useRoute();
+const id = ref(route.params.id);
+const type = ref(route.fullPath.split('/')[1]);
+const post = ref(null);
+
+const getPost = async () => {
+  try {
+    const q = doc(db, type.value, id.value);
+    const querySnapshot = await getDoc(q);
+    if (querySnapshot.exists()) {
+      post.value = querySnapshot.data();
+      console.log(post.value);
+    }
+  } catch (error) {
+    console.error('Response error:', error);
+  }
+};
+
+onMounted(() => {
+  getPost();
+});
 </script>
 
 <template>
   <div class="wrap">
     <div class="title">
-      <span>
-        [ 家訪 ]「以自然為基底，將現代住宅融入異域風貌的居住空間 」— 藝術家 LUPA
-        的工作室住家
-      </span>
+      <span>{{ post?.title }}</span>
     </div>
 
     <time class="timestamp">10/12/2024</time>
 
     <YouTubePlayer
+      v-if="post?.topic === 'video'"
       :width="playerWidth"
       :height="playerHeight"
-      src="https://www.youtube.com/watch?v=uRzs2kS3Blg"
+      :src="post?.link"
     />
-
-    <div class="description">
-      <p>
-        業父多燈、行兩要因比者土？應受我他建影轉假界吃學他本打可星希開，一連雙住先歡子頭學始變：康文的。多書能求產包並嗎些最裡中？他黃品之車去錢般容口你的方地文子，投動分內有些請中德人方選時活之車是童的筆的；交術行人特細這候看火己細主子又做年子手象為人它特一岸小好三了考建他國商非條沒稱進任都十能問好中之響身動書相一友功，的們看學土，率衣知要得市實一愛給牛年世東官：機定度回作小活女器部認。
-      </p>
+    <div class="quill-content">
+      <div class="ql-editor" v-html="post?.draftContent"></div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-@import "@/style/main.scss";
+@import '@/style/_method.scss';
+@import 'quill/dist/quill.core.css';
+@import 'quill/dist/quill.snow.css';
 .wrap {
   max-width: 800px;
   min-height: auto;
@@ -46,7 +66,7 @@ const playerHeight =
     @include fontStyle(24, 700, #fff);
     position: relative;
     &::after {
-      content: "";
+      content: '';
       width: 30px;
       height: 2px;
       background: #fff;
@@ -55,8 +75,10 @@ const playerHeight =
       transform: translateX(-50%);
     }
   }
-  .description {
-    @include fontStyle(16, 400, #fff);
+  .quill-content {
+    :deep(.ql-editor) {
+      padding: 0;
+    }
   }
   .timestamp {
     @include fontStyle(12, 40);

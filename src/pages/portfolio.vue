@@ -1,23 +1,27 @@
 <script setup>
-import { RouterLink } from "vue-router";
-import NavigationBar from "../components/Layout/NavigationBar.vue";
-import { ref, onMounted } from "vue";
-import { db } from "../../firebase/firebaseInit";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { RouterLink } from 'vue-router';
+import NavigationBar from '../components/Layout/NavigationBar.vue';
+import { ref, onMounted } from 'vue';
+import { db } from '../../firebase/firebaseInit';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 
-const topic = ref("web");
+const topic = ref('web');
 
 const portfolioList = ref([]);
 const getList = async (topic) => {
   try {
-    const q = query(collection(db, "portfolio"), where("topic", "==", topic));
+    const q = query(collection(db, 'portfolio'), where('topic', '==', topic));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       portfolioList.value = [...portfolioList.value, doc.data()];
+      portfolioList.value.forEach((item) => {
+        item.id = doc.id;
+      });
+
       console.log(portfolioList.value);
     });
   } catch (error) {
-    console.error("Response error:", error);
+    console.error('Response error:', error);
   }
 };
 
@@ -64,9 +68,10 @@ onMounted(() => {
           </li>
         </ul>
       </div>
+
       <div class="boxList">
         <RouterLink
-          to="/portfolio/portfolioDetail"
+          :to="{ name: 'PortfolioDetail', params: { id: item.id } }"
           class="BLcard"
           v-for="(item, index) in portfolioList"
           :key="index"
@@ -88,5 +93,5 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-@import "@/style/main.scss";
+@import '@/style/main.scss';
 </style>

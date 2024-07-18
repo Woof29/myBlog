@@ -1,12 +1,10 @@
 .container {
-  // max-width: 1220px;
   min-height: 100vh;
   margin: 0 auto;
-  // background: #101010 url("@/assets/outer_space_bg.png") repeat center/120%;
   background-attachment: fixed;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   //   justify-content: center;
   z-index: 0;
 }
@@ -61,7 +59,7 @@
     position: relative;
     &::after,
     &::before {
-      content: "";
+      content: '';
       width: calc(100% - 4px);
       height: 2px;
       margin: auto;
@@ -97,7 +95,7 @@
       line-height: 24px;
       font-weight: bold;
       &::before {
-        content: "";
+        content: '';
         width: 4px;
         height: 14px;
         border-radius: 4px;
@@ -142,7 +140,7 @@
   top: 0;
   z-index: 2;
   background: linear-gradient(180deg, #0f0f0f 65%, transparent 100%);
-  @include rwd($rwd-level-one) {
+  @include rwd($rwd-level-two) {
     padding: 24px 12px;
   }
   .title {
@@ -167,7 +165,7 @@
       @include fontStyle(16, 400);
       cursor: pointer;
       &::before {
-        content: "";
+        content: '';
         width: 0;
         height: 2px;
         background: #fff;
@@ -193,7 +191,7 @@
 
 .boxList {
   width: 100%;
-  max-width: 1400px;
+  // max-width: 1400px;
   padding: 24px 24px calc(80px + constant(safe-area-inset-bottom)) 100px;
   padding: 24px 24px calc(80px + env(safe-area-inset-bottom)) 100px;
   display: flex;
@@ -202,14 +200,14 @@
   flex-shrink: 0;
   column-gap: 32px;
   row-gap: 32px;
-  @include rwd($rwd-level-one) {
+  @include rwd($rwd-level-two) {
     padding: 24px 12px calc(80px + constant(safe-area-inset-bottom));
     padding: 24px 12px calc(80px + env(safe-area-inset-bottom));
     column-gap: 8px;
     row-gap: 16px;
   }
   @at-root .BLcard {
-    width: calc(100% / 3 - 21.4px);
+    width: calc(100% / 4 - 24px);
     padding: 16px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 16px;
@@ -225,6 +223,9 @@
       box-shadow: 0 8px 32px 0 rgba(159, 160, 173, 0.219);
     }
     @include rwd($rwd-level-one) {
+      width: calc(100% / 3 - 21.4px);
+    }
+    @include rwd($rwd-level-two) {
       width: calc(100% / 2 - 4px);
     }
     @at-root .cardPic {
@@ -251,7 +252,7 @@
       .title {
         @include txtChip(2);
         @include fontStyle(16, 700, #fff);
-        @include rwd($rwd-level-one) {
+        @include rwd($rwd-level-two) {
           @include txtChip(1);
         }
       }
@@ -260,7 +261,7 @@
       p {
         @include txtChip(3);
         @include fontStyle(14, 400, #c0c0c0);
-        @include rwd($rwd-level-one) {
+        @include rwd($rwd-level-two) {
           @include txtChip(2);
         }
       }
@@ -424,7 +425,7 @@
     color: #8f8f8f;
     position: relative;
     &::before {
-      content: "‧";
+      content: '‧';
       width: 20px;
       height: 20px;
       font-size: 65px;
@@ -474,8 +475,8 @@
       background-color: #2e2e2e;
       @include closeBtnStyle(24, #fff);
       border-radius: 50%;
-      position: absolute;
-      @include pos(tr, 16px);
+      position: fixed;
+      @include pos(tr, 65px, 60px);
       margin: 0;
       cursor: pointer;
     }

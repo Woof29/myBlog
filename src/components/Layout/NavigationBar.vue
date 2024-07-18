@@ -28,7 +28,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import "@/style/main.scss";
+@import '@/style/main.scss';
 nav {
   width: 76px;
   min-height: 100vh;
@@ -37,7 +37,7 @@ nav {
   position: fixed;
   bottom: 0;
   z-index: 99;
-  @include rwd($rwd-level-one) {
+  @include rwd($rwd-level-two) {
     width: 100%;
     height: auto;
     min-height: auto;
@@ -51,7 +51,7 @@ nav {
     align-items: center;
     justify-content: center;
     gap: 32px;
-    @include rwd($rwd-level-one) {
+    @include rwd($rwd-level-two) {
       height: auto;
       padding: 8px;
       flex-direction: row;
@@ -74,17 +74,17 @@ nav {
           width: 100%;
           height: 100%;
           &.home {
-            background: url("@/assets/icon/home_passive.svg") no-repeat center;
+            background: url('@/assets/icon/home_passive.svg') no-repeat center;
           }
           &.about {
-            background: url("@/assets/icon/about_passive.svg") no-repeat center;
+            background: url('@/assets/icon/about_passive.svg') no-repeat center;
           }
           &.portfolio {
-            background: url("@/assets/icon/portfolio_passive.svg") no-repeat
+            background: url('@/assets/icon/portfolio_passive.svg') no-repeat
               center;
           }
           &.blog {
-            background: url("@/assets/icon/blog_passive.svg") no-repeat center;
+            background: url('@/assets/icon/blog_passive.svg') no-repeat center;
           }
         }
         &.router-link-active {
@@ -92,17 +92,17 @@ nav {
             width: 100%;
             height: 100%;
             &.home {
-              background: url("@/assets/icon/home_active.svg") no-repeat center;
+              background: url('@/assets/icon/home_active.svg') no-repeat center;
             }
             &.about {
-              background: url("@/assets/icon/about_active.svg") no-repeat center;
+              background: url('@/assets/icon/about_active.svg') no-repeat center;
             }
             &.portfolio {
-              background: url("@/assets/icon/portfolio_active.svg") no-repeat
+              background: url('@/assets/icon/portfolio_active.svg') no-repeat
                 center;
             }
             &.blog {
-              background: url("@/assets/icon/blog_active.svg") no-repeat center;
+              background: url('@/assets/icon/blog_active.svg') no-repeat center;
             }
           }
         }
