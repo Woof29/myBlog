@@ -59,10 +59,12 @@ const handleShake = () => {
 <style lang="scss" scoped>
 @import '@/style/main.scss';
 .container {
+  height: 100dvh;
   padding: 36px;
   justify-content: space-between;
   position: relative;
   z-index: 2000;
+  overflow: hidden;
   .menu {
     width: 100%;
     display: flex;
@@ -73,43 +75,43 @@ const handleShake = () => {
       gap: 12px;
     }
     .item {
-      color: #d4d4d4;
       a {
         padding: 8px 12px;
         position: relative;
-        &::after {
-          content: '';
-          width: 0;
-          height: 2px;
-          background: #fff;
-          position: absolute;
-          @include pos(bl, 6px, 12px);
-          transition: width 0.3s ease-in;
-        }
         &:hover {
-          color: #fff;
-          &::after {
-            width: calc(100% - 22px);
-          }
+          text-shadow: 1px 0px 20px #c4c4c4c4;
         }
       }
     }
   }
 
   .imgWrap {
-    width: 100%;
+    width: 30%;
+    padding-bottom: 30%;
+    @include rwd($rwd-level-one) {
+      width: 50%;
+      padding-bottom: 50%;
+    }
+    @include rwd($rwd-level-two) {
+      width: 80%;
+      padding-bottom: 80%;
+    }
     display: flex;
+    align-self: center;
     align-items: center;
     justify-content: center;
+    position: relative;
+    cursor: pointer;
 
     img {
-      width: 500px;
-      height: 500px;
-      @include rwd($rwd-level-two) {
-        width: 300px;
-        height: 300px;
-      }
+      width: 100%;
+      height: 100%;
+      vertical-align: middle;
+      position: absolute;
+      top: 0;
+      left: 0;
       object-fit: cover;
+
       cursor: pointer;
     }
   }

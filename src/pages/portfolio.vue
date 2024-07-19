@@ -1,11 +1,11 @@
 <script setup>
-import { RouterLink } from 'vue-router';
+import { RouterLink, onBeforeRouteLeave } from 'vue-router';
 import NavigationBar from '../components/Layout/NavigationBar.vue';
-import { ref, onMounted } from 'vue';
 import { db } from '../../firebase/firebaseInit';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 
-const topic = ref('web');
+const { activePT, setActivePT } = inject('portfolioState');
+// const scrollPosition = ref(0);
 
 const portfolioList = ref([]);
 const getList = async (topic) => {
@@ -13,13 +13,9 @@ const getList = async (topic) => {
     const q = query(collection(db, 'portfolio'), where('topic', '==', topic));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      portfolioList.value = [...portfolioList.value, doc.data()];
-      portfolioList.value.forEach((item) => {
-        item.id = doc.id;
-      });
-
-      console.log(portfolioList.value);
+      portfolioList.value.push({ ...doc.data(), id: doc.id });
     });
+    // console.log(portfolioList.value);
   } catch (error) {
     console.error('Response error:', error);
   }
@@ -27,13 +23,20 @@ const getList = async (topic) => {
 
 const switchTopic = (v) => {
   portfolioList.value = [];
-  topic.value = v;
-  getList(topic.value);
+  setActivePT(v);
+  getList(v);
 };
 
 onMounted(() => {
-  getList(topic.value);
+  getList(activePT.value);
+  // window.scrollTo(0, scrollPosition.value);
 });
+
+// onBeforeRouteLeave((to, from, next) => {
+//   // 保存滾動位置
+//   scrollPosition.value = window.scrollY;
+//   next();
+// });
 </script>
 
 <template>
@@ -45,23 +48,26 @@ onMounted(() => {
         </div>
 
         <ul class="tabList">
-          <li :class="{ active: topic === 'web' }" @click="switchTopic('web')">
+          <li
+            :class="{ active: activePT === 'web' }"
+            @click="switchTopic('web')"
+          >
             <span>Web</span>
           </li>
           <li
-            :class="{ active: topic === 'video' }"
+            :class="{ active: activePT === 'video' }"
             @click="switchTopic('video')"
           >
             <span>Video</span>
           </li>
           <li
-            :class="{ active: topic === 'photo' }"
+            :class="{ active: activePT === 'photo' }"
             @click="switchTopic('photo')"
           >
             <span>Photography</span>
           </li>
           <li
-            :class="{ active: topic === 'graphic' }"
+            :class="{ active: activePT === 'graphic' }"
             @click="switchTopic('graphic')"
           >
             <span>Graphic</span>

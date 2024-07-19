@@ -88,6 +88,10 @@ nav {
           }
         }
         &.router-link-active {
+          &:hover {
+            border-radius: initial;
+            background: none;
+          }
           .icon {
             width: 100%;
             height: 100%;

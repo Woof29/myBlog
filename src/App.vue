@@ -4,6 +4,24 @@ const goBack = () => {
   router.go(-1);
 };
 
+const activePT = ref('web');
+const activeBT = ref('tech');
+
+const setActivePT = (tab) => {
+  activePT.value = tab;
+};
+const setActiveBT = (tab) => {
+  activeBT.value = tab;
+};
+provide('portfolioState', {
+  activePT,
+  setActivePT,
+});
+provide('blogState', {
+  activeBT,
+  setActiveBT,
+});
+
 const starryNight = ref(null);
 
 class StarrySky {
@@ -113,7 +131,9 @@ onUnmounted(() => {
 <template>
   <router-view v-slot="{ Component, route }">
     <transition :name="route.meta.transition">
-      <component :is="Component" :key="route.path" />
+      <keep-alive>
+        <component :is="Component" :key="route.path" />
+      </keep-alive>
     </transition>
   </router-view>
 
