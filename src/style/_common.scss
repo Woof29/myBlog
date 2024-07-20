@@ -247,16 +247,6 @@
 	}
 }
 
-.primaryTag {
-	@include fullNone();
-	@include txtChip(1);
-	@include fontStyle(14, 400, #8f8f8f);
-	max-width: 100px;
-	padding: 8px 12px;
-	background: #2e2e2e;
-	border-radius: 24px;
-}
-
 %extendEllipsis {
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
@@ -312,8 +302,8 @@
 			background-color: #2e2e2e;
 			@include closeBtnStyle(30, #fff);
 			border-radius: 50%;
-			position: absolute;
-			@include pos(tr, 45px, 45px);
+			position: fixed;
+			@include pos(tr, 10%, 8%);
 			margin: 0;
 			cursor: pointer;
 			transition: all 0.2s ease-out;
