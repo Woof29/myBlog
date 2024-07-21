@@ -6,25 +6,27 @@ import NavigationBar from '../components/Layout/NavigationBar.vue';
 		<div class="container">
 			<div class="dashboard">
 				<div class="aboutCard avatar">
-					<div class="cardPic">
-						<img src="@/assets/salmon_avatar.webp" />
+					<div class="info">
+						<div class="cardPic">
+							<img src="@/assets/salmon_avatar.webp" />
+						</div>
+						<div class="name">
+							<strong>輪切 鮭魚</strong>
+							<span>KEVIN CHEN</span>
+						</div>
 					</div>
-					<div class="name">
-						<strong>陳 昀瑱</strong>
-						<span>KEVIN CHEN</span>
+					<div class="intro">
+						<p>
+							歡迎來到我的鮭魚星系，這裡記錄了跟我有關的文字以及影像，從無到有，都是自己開發以及維護。鮭魚星系主體為鮭魚星，有許多小型天體圍繞著鮭魚星，星系中富有小型隕石，因此不定時會出現流星，請記得許下你的願望。另外如果有任何合作可能，請讓我知道！
+						</p>
 					</div>
-					<p>
-						大學畢業後，懷抱著理想和熱情，開始了創業之路。雖然這段經歷充滿挑戰，讓我經歷了不少挫折，但也因此積累了豐富的經驗，並且不斷學習和成長。起初，我從事影像製作行業，經歷了多間公司的磨練。在這個過程中，我獲得了一個邊工作邊學習前端技能的機會，並就此踏上了前端工程師的職業道路。
-						如今的我，依然保有創業時的熱情和創意，但變得更加成熟穩重，且懂得如何有效地與他人合作。我相信，這些經驗使我能夠在未來的工作一展長才，並為團隊帶來更多的價值。
-					</p>
 				</div>
 
 				<div class="aboutCard experience">
 					<span class="title">WORK EXPERIENCE</span>
 					<ul>
-						<span>YangFan Tech Ltd., 2022 - now</span>
-						<b>Front-end Developer</b>
-						<li>使⽤ MVVM / MVC 設計模式，開發及維護Vue3專案</li>
+						<span>Streaming Services Application, 2022 - now</span>
+						<li>使⽤ MVVM / MVC 設計模式，開發及維護 Vue3 專案</li>
 						<li>負責持續維護與優化整體功能和使用者介面，確保系統穩定性</li>
 						<li>
 							與 UI / UX 設計師合作，分析並提升使用者體驗，確保產品的一致性
@@ -38,22 +40,36 @@ import NavigationBar from '../components/Layout/NavigationBar.vue';
 						</li>
 					</ul>
 					<ul>
-						<span>SKY EYE LEAGUE Ltd., 2021 - 2022</span>
-						<b>Film Maker</b>
-						<li>將公司作品記錄成影音</li>
-						<li>影音企劃發想</li>
-						<li>現場拍攝以及後製剪輯</li>
+						<span>I-CHING - Online Divination, 2023 - now</span>
+						<li>使用 MVC 設計模式，開發及維護 React 專案</li>
+						<li>獨立規劃應用流程，並反覆驗證確保使用者體驗順暢</li>
+						<li>使用 i18n，實現多語系切換</li>
+						<li>串接 Firestore API，遠端請求占卜結果</li>
+						<li>
+							串接 Open AI API，將占卜結果交給 AI，請 AI 替使用者解釋卦象的意思
+						</li>
+						<li>
+							串接 Cloud
+							Function，將含有敏感訊息的函式放置後端，並由後端發送遠端請求
+						</li>
+					</ul>
+
+					<ul>
+						<span>Salmon System - My Blog, 2024</span>
+						<li>
+							使⽤ MVVM / MVC 設計模式，開發、維護且結合 Vue3 以及 React 專案
+						</li>
+						<li>串接 Firestore Storage API，遠端存取圖片和文字</li>
+						<li>使用 Quill 技術棧，實現富文本功能，搭建自己的Medium</li>
+						<li>使用 YouTube Player 技術棧，創建影音播放實例</li>
 					</ul>
 				</div>
 
-				<div class="aboutCard skill">
-					<span class="title">SKILL</span>
-					<ul>
-						<span>Dev Skills</span>
-						<li>將公司作品記錄成影音</li>
-						<li>影音企劃發想</li>
-						<li>現場拍攝以及後製剪輯</li>
-					</ul>
+				<div class="aboutCard contact">
+					<span class="title">Contact Me</span>
+					<div class="wrap">
+						<span>Email : kevin8003129@gmail.com</span>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -76,77 +92,129 @@ import NavigationBar from '../components/Layout/NavigationBar.vue';
 	width: 100%;
 	max-width: 1440px;
 	display: flex;
-	flex-wrap: wrap;
+	flex-direction: column;
 	justify-content: center;
 	gap: 48px;
-	.aboutCard {
-		padding: 16px;
-		border: 1px solid rgba(255, 255, 255, 0.15);
-		border-radius: 16px;
-		@include glassmorphism(60);
+}
+.aboutCard {
+	width: 100%;
+	padding: 16px;
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	border-radius: 16px;
+	@include glassmorphism(60);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 32px;
+	@include rwd($rwd-level-two) {
+		width: 100%;
+	}
+	.title {
+		@include fontStyle(24, 700, #fff);
+	}
+	ul {
+		width: 80%;
+		padding: 0 8px;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		gap: 24px;
+		gap: 4px;
+		list-style: inside;
 		@include rwd($rwd-level-two) {
 			width: 100%;
 		}
-		.title {
-			@include fontStyle(24, 700, #fff);
+		span {
+			display: block;
+			margin-bottom: 4px;
+			@include fontStyle(18, 700, #fff);
 		}
-		ul {
-			width: 80%;
-			padding: 0 8px;
-			display: flex;
-			flex-direction: column;
-			gap: 4px;
-			list-style: inside;
-			@include rwd($rwd-level-two) {
-				width: 100%;
-			}
-			span {
-				display: block;
-				margin-bottom: 4px;
-				@include fontStyle(18, 700, #fff);
-			}
-			li {
-				@include fontStyle(14, 400, #fff);
-			}
+		li {
+			@include fontStyle(14, 400, #fff);
 		}
 	}
-}
-.experience,
-.intro {
-	width: calc(100% / 3 * 2 - 24px);
 }
 
 .avatar {
-	width: calc(100% / 3 - 24px);
-	.name {
-		width: 100%;
+	.info {
+		width: 300px;
 		display: flex;
+		flex-direction: column;
 		align-items: center;
-		justify-content: center;
-		gap: 8px;
-		span {
-			@include fontStyle(20, 400, #fff);
+		gap: 16px;
+		position: relative;
+		@include rwd($rwd-level-two) {
+			width: 200px;
 		}
-		strong {
-			@include fontStyle(24, 700, #fff);
+		&::after {
+			content: '';
+			width: 40px;
+			height: 2px;
+			background: #fff;
+			position: absolute;
+			@include pos(bl, -16px, 50%);
+			transform: translateX(-50%);
+		}
+		.name {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 8px;
+			@include rwd($rwd-level-two) {
+				flex-direction: column;
+				gap: 0;
+			}
+			span {
+				@include fontStyle(20, 400, #fff);
+				@include rwd($rwd-level-two) {
+					font-size: 16px;
+				}
+			}
+			strong {
+				@include fontStyle(24, 700, #fff);
+				@include rwd($rwd-level-two) {
+					font-size: 20px;
+				}
+			}
 		}
 	}
-	p {
-		padding: 0 8px;
-		@include fontStyle(14, 400, #fff);
+	.intro {
+		width: 80%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		p {
+			padding: 0 8px;
+			@include fontStyle(14, 400, #fff);
+		}
+		span {
+			@include fontStyle(14, 400, #fff);
+		}
 	}
 	.cardPic {
-		width: 60%;
-		padding-bottom: 60%;
+		width: 100%;
+		padding-bottom: 100%;
 	}
 }
 
-.skill {
-	flex: 1;
+.contact {
+	.title {
+		position: relative;
+		&::after {
+			content: '';
+			width: 30px;
+			height: 2px;
+			background: #fff;
+			position: absolute;
+			@include pos(bl, -16px, 50%);
+			transform: translateX(-50%);
+		}
+	}
+	.wrap {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		@include fontStyle(14, 400, #fff);
+	}
 }
 </style>
