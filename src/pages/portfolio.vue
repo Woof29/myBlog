@@ -72,21 +72,32 @@ onBeforeRouteLeave((to, from, next) => {
 			</div>
 
 			<div class="boxList">
-				<RouterLink
-					:to="{ name: 'portfolioDetail', params: { id: item.id } }"
-					class="BLcard"
-					v-for="(item, index) in portfolioList"
-					:key="index">
-					<div class="cardPic">
-						<img :src="item.coverUrl" />
+				<template v-if="portfolioList.length > 0">
+					<RouterLink
+						:to="{ name: 'portfolioDetail', params: { id: item.id } }"
+						class="BLcard"
+						v-for="(item, index) in portfolioList"
+						:key="index">
+						<div class="cardPic">
+							<img :src="item.coverUrl" />
+						</div>
+						<div class="cardTitle">
+							<span class="title">{{ item.title }}</span>
+						</div>
+						<div class="cardContent">
+							<p>{{ item.preview }}</p>
+						</div>
+					</RouterLink>
+				</template>
+
+				<template v-else>
+					<div class="noData">
+						<div class="cardPic">
+							<img src="@/assets/noData.png" alt="" />
+						</div>
+						<span>空空如也～</span>
 					</div>
-					<div class="cardTitle">
-						<span class="title">{{ item.title }}</span>
-					</div>
-					<div class="cardContent">
-						<p>{{ item.preview }}</p>
-					</div>
-				</RouterLink>
+				</template>
 			</div>
 		</div>
 		<NavigationBar />

@@ -327,3 +327,18 @@
 		}
 	}
 }
+
+.noData {
+	width: 100%;
+	height: calc(100dvh - 250px);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	@include fontStyle(16, 400, #b6b6b6f1);
+	.cardPic {
+		width: 40%;
+		padding-bottom: 40%;
+	}
+}
