@@ -138,7 +138,9 @@ onUnmounted(() => {
 	<router-view v-slot="{ Component }" name="modal">
 		<div v-if="Component" class="modalBG" @click.prevent="goBack">
 			<div class="modalContainer" @click.stop>
-				<div class="closeBtn" @click.prevent="goBack"></div>
+				<div class="top">
+					<div class="closeBtn" @click.prevent="goBack"></div>
+				</div>
 				<keep-alive>
 					<component :is="Component" />
 				</keep-alive>

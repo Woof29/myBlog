@@ -283,14 +283,11 @@
 		border-radius: 24px;
 		background: #101010;
 		display: flex;
+		flex-direction: column;
 		align-items: flex-start;
-		justify-content: center;
 		position: relative;
-		overflow: auto;
 		transition: all 0.3s ease-in;
-		&::-webkit-scrollbar {
-			display: none;
-		}
+
 		@include rwd($rwd-level-two) {
 			max-width: none;
 			width: 100%;
@@ -298,20 +295,28 @@
 			height: 100dvh;
 			border-radius: initial;
 		}
+		.top {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			position: relative;
+			@include rwd($rwd-level-two) {
+				justify-content: flex-start;
+			}
+		}
 		.closeBtn {
 			background-color: #2e2e2e;
 			@include closeBtnStyle(30, #fff);
 			border-radius: 50%;
-			position: fixed;
-			@include pos(tr, 10%, 8%);
 			margin: 0;
+			position: relative;
 			cursor: pointer;
 			transition: all 0.2s ease-out;
 			&:hover {
 				box-shadow: 1px 0 10px 0px #c4c4c45b;
 			}
 			@include rwd($rwd-level-two) {
-				@include pos(tl, 24px, 24px);
 				&::after,
 				&::before {
 					width: calc(100% - 20px);
@@ -327,6 +332,7 @@
 		}
 	}
 }
+
 .loadingWrap {
 	width: 100%;
 	height: calc(100dvh - 250px);

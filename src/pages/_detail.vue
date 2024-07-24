@@ -64,6 +64,7 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+@import '@/style/_variables.scss';
 @import '@/style/_method.scss';
 @import 'quill/dist/quill.core.css';
 @import 'quill/dist/quill.snow.css';
@@ -74,7 +75,12 @@ onMounted(() => {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	align-self: center;
 	gap: 32px;
+	overflow-y: scroll;
+	&::-webkit-scrollbar {
+		display: none;
+	}
 	.title {
 		@include fontStyle(24, 700, #fff);
 		position: relative;
@@ -91,6 +97,9 @@ onMounted(() => {
 	.quill-content {
 		:deep(.ql-editor) {
 			padding: 0;
+		}
+		@include rwd($rwd-level-three) {
+			width: 300px;
 		}
 	}
 	.timestamp {
