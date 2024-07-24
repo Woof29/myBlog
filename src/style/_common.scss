@@ -327,6 +327,26 @@
 		}
 	}
 }
+.loadingWrap {
+	width: 100%;
+	height: calc(100dvh - 250px);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+	@include fontStyle(16, 400, #b6b6b6f1);
+	.lottie-animation-container {
+		width: 250px;
+		padding-bottom: 250px;
+		padding: 0;
+		@include rwd($rwd-level-two) {
+			width: 150px;
+			padding-bottom: 150px;
+			padding: 0;
+		}
+	}
+}
 
 .noData {
 	width: 100%;
@@ -335,10 +355,14 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	gap: 8px;
+	gap: 16px;
 	@include fontStyle(16, 400, #b6b6b6f1);
 	.cardPic {
-		width: 40%;
-		padding-bottom: 40%;
+		width: 250px;
+		padding-bottom: 250px;
+		@include rwd($rwd-level-two) {
+			width: 150px;
+			padding-bottom: 150px;
+		}
 	}
 }

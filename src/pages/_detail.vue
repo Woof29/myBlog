@@ -2,6 +2,8 @@
 import YouTubePlayer from '../components/YouTubePlayer.vue';
 import { db } from '../../firebase/firebaseInit';
 import { doc, getDoc } from 'firebase/firestore';
+import { Vue3Lottie } from 'vue3-lottie';
+import wholeFishLottie from '@/assets/whole_fish.json';
 
 const playerWidth =
 	document.body.clientWidth > 768 ? 800 : document.body.clientWidth * 0.75;
@@ -12,7 +14,10 @@ const id = ref(route.params.id);
 const type = ref(route.fullPath.split('/')[1]);
 const post = ref(null);
 const timestamp = ref('');
+const isLoading = ref(false);
+
 const getPost = async () => {
+	isLoading.value = true;
 	try {
 		const q = doc(db, type.value, id.value);
 		const querySnapshot = await getDoc(q);
@@ -22,6 +27,7 @@ const getPost = async () => {
 			const d = new Date(sec);
 			timestamp.value = `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`;
 		}
+		isLoading.value = false;
 	} catch (error) {
 		console.error('Response error:', error);
 	}
@@ -34,19 +40,25 @@ onMounted(() => {
 
 <template>
 	<div class="wrap">
-		<div class="title">
-			<span>{{ post?.title }}</span>
-		</div>
+		<template v-if="!isLoading">
+			<div class="title">
+				<span>{{ post?.title }}</span>
+			</div>
 
-		<time class="timestamp">{{ timestamp }}</time>
+			<time class="timestamp">{{ timestamp }}</time>
 
-		<YouTubePlayer
-			v-if="post?.topic === 'video'"
-			:width="playerWidth"
-			:height="playerHeight"
-			:src="post?.link" />
-		<div class="quill-content">
-			<div class="ql-editor" v-html="post?.draftContent"></div>
+			<YouTubePlayer
+				v-if="post?.topic === 'video'"
+				:width="playerWidth"
+				:height="playerHeight"
+				:src="post?.link" />
+			<div class="quill-content">
+				<div class="ql-editor" v-html="post?.draftContent"></div>
+			</div>
+		</template>
+
+		<div v-else-if="isLoading" class="loadingWrap">
+			<Vue3Lottie :animationData="wholeFishLottie" />
 		</div>
 	</div>
 </template>

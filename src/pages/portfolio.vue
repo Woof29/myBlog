@@ -3,18 +3,23 @@ import { RouterLink, onBeforeRouteLeave } from 'vue-router';
 import NavigationBar from '../components/Layout/NavigationBar.vue';
 import { db } from '../../firebase/firebaseInit';
 import { collection, query, where, getDocs } from 'firebase/firestore';
+import { Vue3Lottie } from 'vue3-lottie';
+import wholeFishLottie from '@/assets/whole_fish.json';
 
 const { activePT, setActivePT } = inject('portfolioState');
 const scrollPosition = ref(0);
+const isLoading = ref(false);
 
 const portfolioList = ref([]);
 const getList = async (topic) => {
+	isLoading.value = true;
 	try {
 		const q = query(collection(db, 'portfolio'), where('topic', '==', topic));
 		const querySnapshot = await getDocs(q);
 		querySnapshot.forEach((doc) => {
 			portfolioList.value.push({ ...doc.data(), id: doc.id });
 		});
+		isLoading.value = false;
 		// console.log(portfolioList.value);
 	} catch (error) {
 		console.error('Response error:', error);
@@ -72,7 +77,7 @@ onBeforeRouteLeave((to, from, next) => {
 			</div>
 
 			<div class="boxList">
-				<template v-if="portfolioList.length > 0">
+				<template v-if="portfolioList?.length > 0">
 					<RouterLink
 						:to="{ name: 'portfolioDetail', params: { id: item.id } }"
 						class="BLcard"
@@ -90,14 +95,17 @@ onBeforeRouteLeave((to, from, next) => {
 					</RouterLink>
 				</template>
 
-				<template v-else>
-					<div class="noData">
-						<div class="cardPic">
-							<img src="@/assets/noData.png" alt="" />
-						</div>
-						<span>空空如也～</span>
+				<div v-else-if="isLoading" class="loadingWrap">
+					<Vue3Lottie :animationData="wholeFishLottie" />
+				</div>
+
+				<div
+					class="noData"
+					v-else-if="!isLoading && portfolioList?.length <= 0">
+					<div class="cardPic">
+						<img src="@/assets/noData.png" alt="" />
 					</div>
-				</template>
+				</div>
 			</div>
 		</div>
 		<NavigationBar />

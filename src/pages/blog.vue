@@ -2,18 +2,23 @@
 import NavigationBar from '../components/Layout/NavigationBar.vue';
 import { db } from '../../firebase/firebaseInit';
 import { collection, query, where, getDocs } from 'firebase/firestore';
+import { Vue3Lottie } from 'vue3-lottie';
+import wholeFishLottie from '@/assets/whole_fish.json';
 
 const { activeBT, setActiveBT } = inject('blogState');
 const scrollPosition = ref(0);
+const isLoading = ref(false);
 
 const blogList = ref([]);
 const getList = async (topic) => {
+	isLoading.value = true;
 	try {
 		const q = query(collection(db, 'blog'), where('topic', '==', topic));
 		const querySnapshot = await getDocs(q);
 		querySnapshot.forEach((doc) => {
 			blogList.value.push({ ...doc.data(), id: doc.id });
 		});
+		isLoading.value = false;
 		// console.log(blogList.value);
 	} catch (error) {
 		console.error('Response error:', error);
@@ -70,21 +75,33 @@ onBeforeRouteLeave((to, from, next) => {
 				</ul>
 			</div>
 			<div class="boxList">
-				<RouterLink
-					:to="{ name: 'blogDetail', params: { id: item.id } }"
-					class="BLcard"
-					v-for="(item, index) in blogList"
-					:key="index">
+				<template v-if="blogList.length > 0">
+					<RouterLink
+						:to="{ name: 'blogDetail', params: { id: item.id } }"
+						class="BLcard"
+						v-for="(item, index) in blogList"
+						:key="index">
+						<div class="cardPic">
+							<img :src="item.coverUrl" />
+						</div>
+						<div class="cardTitle">
+							<span class="title">{{ item.title }}</span>
+						</div>
+						<div class="cardContent">
+							<p>{{ item.preview }}</p>
+						</div>
+					</RouterLink>
+				</template>
+
+				<div v-else-if="isLoading" class="loadingWrap">
+					<Vue3Lottie :animationData="wholeFishLottie" />
+				</div>
+
+				<div class="noData" v-else-if="!isLoading && blogList.length <= 0">
 					<div class="cardPic">
-						<img :src="item.coverUrl" />
+						<img src="@/assets/noData.png" alt="" />
 					</div>
-					<div class="cardTitle">
-						<span class="title">{{ item.title }}</span>
-					</div>
-					<div class="cardContent">
-						<p>{{ item.preview }}</p>
-					</div>
-				</RouterLink>
+				</div>
 			</div>
 		</div>
 		<NavigationBar />
