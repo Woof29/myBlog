@@ -66,7 +66,7 @@ import NavigationBar from '../components/Layout/NavigationBar.vue';
 				</div>
 
 				<div class="aboutCard contact">
-					<span class="title">Contact Me</span>
+					<span class="title">CONTACT ME</span>
 					<div class="wrap">
 						<span>Email : kevin8003129@gmail.com</span>
 					</div>

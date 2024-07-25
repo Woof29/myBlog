@@ -7,7 +7,8 @@ import { Vue3Lottie } from 'vue3-lottie';
 import wholeFishLottie from '@/assets/whole_fish.json';
 
 const { activePT, setActivePT } = inject('portfolioState');
-const scrollPosition = ref(0);
+const { scrollPosition, setScrollPosition } = inject('scrollState');
+
 const isLoading = ref(false);
 
 const portfolioList = ref([]);
@@ -32,14 +33,14 @@ const switchTopic = (v) => {
 	getList(v);
 };
 
-onMounted(() => {
-	getList(activePT.value);
+onMounted(async () => {
+	await getList(activePT.value);
 	window.scrollTo(0, scrollPosition.value);
 });
 
 onBeforeRouteLeave((to, from, next) => {
 	// 保存滾動位置
-	scrollPosition.value = window.scrollY;
+	setScrollPosition(window.scrollY);
 	next();
 });
 </script>

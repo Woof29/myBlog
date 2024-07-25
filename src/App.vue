@@ -6,6 +6,7 @@ const goBack = () => {
 
 const activePT = ref('web');
 const activeBT = ref('tech');
+const scrollPosition = ref(0);
 
 const setActivePT = (tab) => {
 	activePT.value = tab;
@@ -13,6 +14,11 @@ const setActivePT = (tab) => {
 const setActiveBT = (tab) => {
 	activeBT.value = tab;
 };
+
+const setScrollPosition = (v) => {
+	scrollPosition.value = v;
+};
+
 provide('portfolioState', {
 	activePT,
 	setActivePT,
@@ -20,6 +26,10 @@ provide('portfolioState', {
 provide('blogState', {
 	activeBT,
 	setActiveBT,
+});
+provide('scrollState', {
+	scrollPosition,
+	setScrollPosition,
 });
 
 const starryNight = ref(null);

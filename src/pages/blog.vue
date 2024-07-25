@@ -1,4 +1,5 @@
 <script setup>
+import { RouterLink, onBeforeRouteLeave } from 'vue-router';
 import NavigationBar from '../components/Layout/NavigationBar.vue';
 import { db } from '../../firebase/firebaseInit';
 import { collection, query, where, getDocs } from 'firebase/firestore';
@@ -6,7 +7,8 @@ import { Vue3Lottie } from 'vue3-lottie';
 import wholeFishLottie from '@/assets/whole_fish.json';
 
 const { activeBT, setActiveBT } = inject('blogState');
-const scrollPosition = ref(0);
+const { scrollPosition, setScrollPosition } = inject('scrollState');
+
 const isLoading = ref(false);
 
 const blogList = ref([]);
@@ -31,14 +33,14 @@ const switchTopic = (v) => {
 	getList(v);
 };
 
-onMounted(() => {
-	getList(activeBT.value);
+onMounted(async () => {
+	await getList(activePT.value);
 	window.scrollTo(0, scrollPosition.value);
 });
 
 onBeforeRouteLeave((to, from, next) => {
 	// 保存滾動位置
-	scrollPosition.value = window.scrollY;
+	setScrollPosition(window.scrollY);
 	next();
 });
 </script>
