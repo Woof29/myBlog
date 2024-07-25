@@ -34,7 +34,7 @@ const switchTopic = (v) => {
 };
 
 onMounted(async () => {
-	await getList(activePT.value);
+	await getList(activeBT.value);
 	window.scrollTo(0, scrollPosition.value);
 });
 
