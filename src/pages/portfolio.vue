@@ -98,6 +98,7 @@ onBeforeRouteLeave((to, from, next) => {
 
 				<div v-else-if="isLoading" class="loadingWrap">
 					<Vue3Lottie :animationData="wholeFishLottie" />
+					<span>loading...</span>
 				</div>
 
 				<div
