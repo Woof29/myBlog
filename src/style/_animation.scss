@@ -17,6 +17,17 @@
     opacity: 1;
   }
 }
+@keyframes slideIn {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+  0% {
+    transform: translateX(100%);
+  }
+}
 
 @keyframes spin {
   0% {
@@ -83,49 +94,17 @@
 }
 
 /* 定義 Slide 動畫效果 */
-.slide-enter-active,
-.slide-leave-active {
+.Slide-in-enter-active,
+.Slide-in-leave-active {
   transition: transform 0.4s cubic-bezier(0.5, 0, 0.5, 1);
 }
 
-.slide-leave-to {
-  transform: translateY(-100%);
+.Slide-in-enter-from,
+.Slide-in-leave-to {
+  transform: translateX(100%); // 使組件從右側開始
 }
 
-.slide-leave-from {
-  transform: translateY(0);
-}
-
-.slide-left-enter-active,
-.slide-left-leave-active {
-  transition: opacity 1s;
-}
-.slide-left-enter-from,
-.slide-left-leave-to {
-  opacity: 0;
-}
-.slide-left-enter-to,
-.slide-left-leave-from {
-  opacity: 1;
-  transform: translate(100%);
-}
-
-// .slide-left-leave-to {
-//   opacity: 0;
-//   left: 20px;
-//   transform: translateX(-100%);
-// }
-
-// 淡化動畫效果
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.5s ease-in;
-}
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-.fade-enter-to,
-.fade-leave-from {
-  opacity: 1;
+.Slide-in-enter-to,
+.Slide-in-leave-from {
+  transform: translateX(0); // 使組件滑動回到其原始位置
 }

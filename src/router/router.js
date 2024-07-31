@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-function keepDefaultView(to, from) {
+const keepDefaultView = (to, from) => {
   if (from.matched.length) {
     // console.log('From:', from);
     // console.log('To:', to);
@@ -8,7 +8,7 @@ function keepDefaultView(to, from) {
   } else {
     to.matched[0].components.default = () => import('@/pages/portfolio.vue');
   }
-}
+};
 
 const routes = [
   {
@@ -80,6 +80,13 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0 };
+    }
+  },
 });
 
 export default router;

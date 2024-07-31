@@ -8,10 +8,12 @@
 body {
   min-height: 100vh;
   min-height: 100dvh;
-  &:has(.modalContainer),
-  :has(.bodyIsHidden) {
-    overflow: hidden;
+  &:has(.modalContainer) {
     padding-right: 6px;
+    overflow: hidden;
+    @include rwd($rwd-level-two) {
+      padding: 0;
+    }
   }
 }
 .starry-night {
