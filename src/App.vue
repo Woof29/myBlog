@@ -1,5 +1,16 @@
 <script setup>
+import { analytics } from '../firebase/firebaseInit';
+import { logEvent } from 'firebase/analytics';
+
 const router = useRouter();
+
+router.afterEach((to) => {
+  logEvent(analytics, 'page_view', {
+    page_path: to.path,
+    page_title: to.name,
+  });
+});
+
 const goBack = () => {
   router.go(-1);
 };
@@ -130,6 +141,7 @@ let starrySky = null;
 onMounted(() => {
   starrySky = new StarrySky(starryNight.value);
   starrySky.start();
+  logEvent(analytics, 'page_view');
 });
 
 onUnmounted(() => {
