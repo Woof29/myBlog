@@ -3,7 +3,6 @@ import { analytics } from '../../firebase/firebaseInit';
 import { logEvent } from 'firebase/analytics';
 
 const shakeImg = ref(null);
-// const clickCount = ref(0);
 const handleShake = () => {
   logEvent(analytics, 'user_action', { action_type: 'button_click' });
   if (shakeImg.value) {
@@ -13,20 +12,6 @@ const handleShake = () => {
     }, 500);
   }
 };
-
-// const goCreate = () => {
-//   clickCount.value++;
-//   if (clickCount.value === 1) {
-//     setTimeout(() => {
-//       clickCount.value = 0;
-//     }, 1000);
-//   }
-
-//   if (clickCount.value === 3) {
-//     router.push("/createPost");
-//     clickCount.value = 0;
-//   }
-// };
 </script>
 
 <template>
@@ -80,6 +65,7 @@ const handleShake = () => {
     }
     .item {
       a {
+        @include fontStyle(20, 400);
         padding: 8px 12px;
         position: relative;
         &:hover {
