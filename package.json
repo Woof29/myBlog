@@ -11,7 +11,9 @@
   "dependencies": {
     "core-js": "^3.37.1",
     "firebase": "^10.12.2",
+    "pinia": "^2.2.6",
     "quill": "^2.0.2",
+    "vant": "^4.9.9",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
     "vue3-lottie": "^3.3.0",

@@ -1,9 +1,22 @@
 <script setup>
 import { analytics } from '../../firebase/firebaseInit';
 import { logEvent } from 'firebase/analytics';
+import { useModalStore } from '../store/useModalStore';
+import BaseModal from '../components/BaseModal.vue';
+import { markRaw } from 'vue';
+
+const modalStore = useModalStore();
+const { handleOpenModal } = modalStore;
+
+const modalContent = {
+  top: '彈窗',
+  body: '彈窗內容',
+  bottom: '彈窗底部',
+};
 
 const shakeImg = ref(null);
 const handleShake = () => {
+  handleOpenModal(markRaw(BaseModal), modalContent);
   logEvent(analytics, 'user_action', { action_type: 'button_click' });
   if (shakeImg.value) {
     shakeImg.value.classList.add('apply-shake');
@@ -32,7 +45,7 @@ const handleShake = () => {
       <img
         ref="shakeImg"
         src="@/assets/salmon_package.webp"
-        @click="handleShake()"
+        @click="handleShake"
       />
     </div>
 

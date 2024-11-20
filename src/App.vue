@@ -1,6 +1,7 @@
 <script setup>
 import { analytics } from '../firebase/firebaseInit';
 import { logEvent } from 'firebase/analytics';
+import DialogModal from './components/DialogModal.vue';
 
 const router = useRouter();
 
@@ -174,6 +175,7 @@ onUnmounted(() => {
     </transition>
   </router-view>
 
+  <DialogModal />
   <div ref="starryNight" class="starry-night"></div>
 </template>
 
